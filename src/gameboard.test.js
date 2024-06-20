@@ -1,8 +1,11 @@
 import Gameboard from "./Gameboard";
+
 let board;
+
 beforeEach(() => {
   board = new Gameboard();
 });
+
 describe("Gameboard class", () => {
   test(" place ships  correctly", () => {
     expect(board.placeShip(0, 0, 2, "horizontal")).toBe("ship placed");
@@ -22,7 +25,7 @@ describe("Gameboard class", () => {
     ]);
   });
 
-  test("reveiveAttack hit the target", () => {
+  test("receiveAttack hit the target", () => {
     expect(board.placeShip(0, 0, 2, "horizontal")).toBe("ship placed");
     expect(board.placeShip(3, 2, 3, "vertical")).toBe("ship placed");
     expect(board.receiveAttack(0, 0)).toBe("hit");

@@ -1,13 +1,14 @@
 import Ship from "./ship.js";
 
 class GameBoard {
-  constructor() {
-    this.grid = this.createGrid();
-    this.ships = [];
-  }
+  ships = [];
+  grid = this.createGrid();
+
+  // constructor() {}
 
   createGrid() {
     const grid = [];
+    
     for (let row = 0; row < 10; row++) {
       const rowArray = [];
       for (let col = 0; col < 10; col++) {
@@ -15,6 +16,7 @@ class GameBoard {
       }
       grid.push(rowArray);
     }
+
     return grid;
   }
 
@@ -38,11 +40,13 @@ class GameBoard {
 
     this.markSurroundingCells(row, col, length, direction);
     this.ships.push(ship);
+
     return "ship placed";
   }
 
   markSurroundingCells(row, col, length, direction) {
     const surroundingCells = [];
+
     for (let i = -1; i <= length; i++) {
       for (let j = -1; j <= 1; j++) {
         let newRow, newCol;
@@ -61,6 +65,7 @@ class GameBoard {
         }
       }
     }
+
     surroundingCells.forEach(([r, c]) => {
       this.grid[r][c] = this.grid[r][c] || "X";
     });
@@ -91,9 +96,11 @@ class GameBoard {
       ship.hit();
       this.grid[row][col] = "H";
       this.checkWinners();
+      
       return "hit";
     } else {
       this.grid[row][col] = "M";
+
       return "missed";
     }
   }
